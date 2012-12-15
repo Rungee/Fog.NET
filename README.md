@@ -8,9 +8,9 @@ is a high performance 2d vector graphics library which contains platform indepen
 2. Extract it into a directory with name Fog at the same level as Fog.NET. Fog directory should contain following folders: Build, Documentaion, Src, Util
 3. Configure Fog (cmake) in order to create Visual Studio Solution.
 4. Configure Fog Project in the following way 
-   a. General -> Output directory: Bin\$(Configuration)\$(PlatformShortName)\
-   b. C/C++ -> Additional Include Directory: ../Src
-   c. Linker-> Advanced -> Import Library: Bin/$(Configuration)/$(PlatformShortName)/$(ProjectName).$(PlatformShortName).lib
+   4.1. General -> Output directory: Bin\$(Configuration)\$(PlatformShortName)\
+   4.2. C/C++ -> Additional Include Directory: ../Src
+   4.3. Linker-> Advanced -> Import Library: Bin/$(Configuration)/$(PlatformShortName)/$(ProjectName).$(PlatformShortName).lib
 5. Build
 6. To run C# Demo application one needs to copy Fog.x86.dll or Fog.x64.dll into the directory with *.exe from Build\Bin\Debug(Release)
 
