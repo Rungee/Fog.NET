@@ -7,7 +7,7 @@ is a high performance 2d vector graphics library which contains platform indepen
 1. Download Fog-Framework from http://code.google.com/p/fog/
 2. Extract it into a directory with name Fog at the same level as Fog.NET. Fog directory should contain following folders: Build, Documentaion, Src, Util
 3. Configure Fog (cmake) in order to create Visual Studio Solution.
-4. Configure Fog Project in the following way 
+4. Configure Fog Project in the following way: 
    4.1. General -> Output directory: Bin\$(Configuration)\$(PlatformShortName)\
    4.2. C/C++ -> Additional Include Directory: ../Src
    4.3. Linker-> Advanced -> Import Library: Bin/$(Configuration)/$(PlatformShortName)/$(ProjectName).$(PlatformShortName).lib
