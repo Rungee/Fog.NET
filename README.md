@@ -1,6 +1,6 @@
 # About
 
-Fog.NET is C++/CLI wrapper of [Fog-Framework](http://code.google.com/p/fog/) that
+Fog.NET is a C++/CLI wrapper of [Fog-Framework](http://code.google.com/p/fog/) that
 is a high performance 2d vector graphics library which contains platform independent SVG engine and UI toolkit (optional). 
 
 # Configuration & Compilation
