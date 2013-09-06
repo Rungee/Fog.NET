@@ -32,6 +32,7 @@
 #include "Image.h"
 #include "Enums.h"
 #include "clix.h"
+#include "ManagedStreamDevice.h"
 
 #include "Fog/G2d/Imaging/Image.h"
 #include "Fog/G2d/Imaging/ImageBits.h"
@@ -109,7 +110,7 @@ namespace FogNET
 	{
         std::string str = marshalString<E_UTF8>(fileName);
 		Fog::StringW fileNameW = Fog::StringW::fromUtf8(str.c_str(), str.length());
-		m_image->writeToFile(fileNameW);
+		err_t e = m_image->writeToFile(fileNameW);
 	}
 
 	Image^ Image::FromFile(String ^fileName)
@@ -131,14 +132,12 @@ namespace FogNET
 
 		Image ^image = gcnew Image(1, 1, ImageFormat::PRGB32);
 
-		//stream->Read
-		//Fog::Stream* streamw;
-		//streamw->
-
 		Fog::Image* nimg = (Fog::Image*)image->GetNativePointer();
 
-		throw gcnew NotImplementedException();
-		//nimg->readFromStream(
+		ManagedStreamDevice* msd = new ManagedStreamDevice(stream);
+		Fog::Stream* fStream = new Fog::Stream((Fog::StreamDevice*)msd);
+
+		nimg->readFromStream(*fStream);
 
 		return image;
 	}

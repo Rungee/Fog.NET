@@ -50,9 +50,14 @@ namespace FogNET
     	Painter(Image ^image);
 		~Painter();
 
+		void* GetNativePointer();
+
 		void Begin(Image ^image);
 		void End();
 		void Flush();
+
+		void Save();
+		void Restore();
 
 		void BlitImage(Point p, Image ^image);
 		void BlitImage(PointF p, Image ^image);
@@ -72,6 +77,10 @@ namespace FogNET
 		void FillPath(PathF ^path);
 		void FillAll();
 		void DrawPolyline(array<PointF> ^points); 
+
+		void ClipRect(ClipOperation clipOp, RectangleF rect);
+		void ClipPath(ClipOperation clipOp, PathF ^path);
+		void ResetClip();
 
 		SizeF MeasureString(String ^str, Font ^font);
 
@@ -99,6 +108,9 @@ namespace FogNET
 		void SetDashList(array<float> ^values);
 
 		void Transform(Matrix ^matrix);
+		void Transform(float m00, float m01, float m02,
+                       float m10, float m11, float m12,
+                       float m20, float m21, float m22);
 		void ResetTransform();
 		void Rotate(double angle);
 		void Rotate(double angle, double cx, double cy);

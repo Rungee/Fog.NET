@@ -51,6 +51,12 @@
     <ClInclude Include="GlyphMetrics.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ManagedStreamDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SvgDocument.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Stdafx.cpp">
@@ -81,6 +87,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FontMetrics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ManagedStreamDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SvgDocument.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

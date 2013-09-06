@@ -155,11 +155,13 @@
     <ClInclude Include="FontMetrics.h" />
     <ClInclude Include="GlyphMetrics.h" />
     <ClInclude Include="Image.h" />
+    <ClInclude Include="ManagedStreamDevice.h" />
     <ClInclude Include="Painter.h" />
     <ClInclude Include="PathF.h" />
     <ClInclude Include="PathStrokerParams.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stdafx.h" />
+    <ClInclude Include="SvgDocument.h" />
     <ClInclude Include="Utility.h" />
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +170,7 @@
     <ClCompile Include="FontMetrics.cpp" />
     <ClCompile Include="GlyphMetrics.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="ManagedStreamDevice.cpp" />
     <ClCompile Include="Painter.cpp" />
     <ClCompile Include="PathF.cpp" />
     <ClCompile Include="PathStrokerParams.cpp" />
@@ -177,6 +180,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="SvgDocument.cpp" />
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>

@@ -61,6 +61,11 @@ namespace FogNET
     	delete m_painter;
     }
 
+	void* Painter::GetNativePointer()
+	{
+		return m_painter;
+	}
+
 	void Painter::Begin(Image ^image)
 	{
 		m_painter->begin(*(Fog::Image*)image->GetNativePointer());
@@ -74,6 +79,16 @@ namespace FogNET
 	void Painter::Flush()
 	{
 		m_painter->flush(Fog::PAINTER_FLUSH::PAINTER_FLUSH_SYNC);
+	}
+
+	void Painter::Save()
+	{
+		m_painter->save();
+	}
+
+	void Painter::Restore()
+	{
+		m_painter->restore();
 	}
 
 	void Painter::BlitImage(Point p, Image ^image)
@@ -186,6 +201,23 @@ namespace FogNET
 		{
 			Marshal::FreeHGlobal(ptr);
 		}
+	}
+
+	void Painter::ClipRect(ClipOperation clipOp, RectangleF rect)
+	{
+		Fog::RectF rc(rect.X, rect.Y, rect.Width, rect.Height);
+		m_painter->clipRect((uint32_t)clipOp, rc);
+	}
+
+	void Painter::ClipPath(ClipOperation clipOp, PathF ^path)
+	{
+		Fog::PathF* pathf = (Fog::PathF*)path->GetNativePointer();
+		m_painter->clipPath((uint32_t)clipOp, *pathf);
+	}
+
+	void Painter::ResetClip()
+	{
+		m_painter->resetClip();
 	}
 
 	FillRule Painter::GetFillRule()
@@ -335,6 +367,16 @@ namespace FogNET
 	{
 		array<float> ^elements = matrix->Elements;
 		Fog::TransformF trans(elements[0], elements[1], elements[2], elements[3], elements[4], elements[5]);
+
+		m_painter->setTransform(trans);
+	}
+
+	void Painter::Transform(float m00, float m01, float m02,
+                            float m10, float m11, float m12,
+                            float m20, float m21, float m22)
+	{
+		Fog::TransformF trans(m00, m01, m02, m10, m11, m12, m20, m21, m22);
+
 		m_painter->setTransform(trans);
 	}
 
