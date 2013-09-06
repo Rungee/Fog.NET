@@ -7,7 +7,7 @@
 ******************************************************************************
 * The MIT License (MIT)
 *
-* Copyright (C) 2012, Maxim Rylov
+* Copyright (C) 2013, Maxim Rylov
 *
 * Permission is hereby granted, free of charge, to any person obtaining a
 * copy of this software and associated documentation files (the "Software"),
@@ -38,62 +38,80 @@ using Image = FogNET.Image;
 
 namespace Fog.NET.Examples
 {
-  public partial class DemoForm : Form
-  {
-    private Bitmap m_bitmap;
-    private Painter m_painter;
-    private Image m_image;
-
-    public DemoForm()
+    public partial class DemoForm : Form
     {
-      InitializeComponent();
+        private Bitmap m_bitmap;
+        private Painter m_painter;
+        private Image m_image;
 
-      m_bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
-      m_image = new Image(m_bitmap);
-      m_painter = new Painter(m_image);
-
-      pictureBox1.Image = m_bitmap;
-
-      btnClear_Click(this, null);
-    }
-
-    private void btnClear_Click(object sender, EventArgs e)
-    {
-      m_painter.SetSource(Color.White);
-      m_painter.FillAll();
-
-      UpdatePictureBox();
-    }
-
-    private void UpdatePictureBox()
-    {
-      pictureBox1.Image = m_bitmap;
-      pictureBox1.Refresh(); 
-    }
-
-    private void btnDrawLines_Click(object sender, EventArgs e)
-    {
-      m_painter.SetSource(Color.Blue);
-      m_painter.DrawLine(20, 20, 100, 160);
-
-      UpdatePictureBox();
-    }
-
-    private void btnDrawText_Click(object sender, EventArgs e)
-    {
-      m_painter.SetSource(Color.Red);
-
-      using (PathF path = new PathF())
-      {
-        using (FogNET.Font font = new FogNET.Font("Tahoma", 12))
+        public DemoForm()
         {
-          path.AddString("Hello Foggy :)", font, new PointF(120, 50));
+            InitializeComponent();
+
+            m_bitmap = new Bitmap(pictureBox1.Width, pictureBox1.Height);
+            m_image = new Image(m_bitmap);
+            m_painter = new Painter(m_image);
+
+            pictureBox1.Image = m_bitmap;
+
+            btnClear_Click(this, null);
         }
 
-        m_painter.FillPath(path);
-      }
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            m_painter.SetSource(Color.White);
+            m_painter.FillAll();
 
-      UpdatePictureBox();
+            UpdatePictureBox();
+        }
+
+        private void UpdatePictureBox()
+        {
+            pictureBox1.Image = m_bitmap;
+            pictureBox1.Refresh();
+        }
+
+        private void btnDrawLines_Click(object sender, EventArgs e)
+        {
+            m_painter.SetSource(Color.Blue);
+            m_painter.DrawLine(20, 20, 100, 160);
+
+            UpdatePictureBox();
+        }
+
+        private void btnDrawText_Click(object sender, EventArgs e)
+        {
+            m_painter.SetSource(Color.Red);
+
+            using (PathF path = new PathF())
+            {
+                using (FogNET.Font font = new FogNET.Font("Tahoma", 12))
+                {
+                    path.AddString("Hello Foggy :)", font, new PointF(120, 50));
+                }
+
+                m_painter.FillPath(path);
+            }
+
+            UpdatePictureBox();
+        }
+
+        private void btnDrawSvg_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = "(*.svg)|*.svg";
+                if (ofd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    //System.IO.FileStream fs = System.IO.File.OpenRead(ofd.FileName);
+                    SvgDocument doc = SvgDocument.FromFile(ofd.FileName);
+                    //SvgDocument doc = SvgDocument.FromStream(fs);
+                    doc.Render(m_painter);
+                    doc.Dispose();
+
+                    UpdatePictureBox();
+                }
+            }
+        }
     }
-  }
 }
