@@ -206,6 +206,15 @@ namespace FogNET
 		//! @brief Used to catch invalid arguments.
 	};
 
+	//! @brief Clip operation.
+	public enum class ClipOperation
+	{
+	  //! @brief Replace the current clipping area.
+	  Replace = 0,
+      //! @brief Intersect the current clipping area.
+      Intersect = 1,
+    };
+
 	public enum class CompositeOperation
 	{
 		Src = 0,
